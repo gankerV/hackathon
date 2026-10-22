@@ -2,6 +2,10 @@
 
 **Exam papers sealed in the teacher's browser that only the class can open, only at exam time, and that no admin or server can read without three admins signing.**
 
+## Demo video
+
+[Watch the 2-minute demo](demo/exam-vault-demo.mp4)
+
 ## Project overview
 
 **Vision & originality.** Exam Vault protects the exam paper, not the server that stores it. A teacher seals the paper on their own device, and it stays sealed until the class sits the exam, under a rule that a quorum of admins signed at the start of term.
