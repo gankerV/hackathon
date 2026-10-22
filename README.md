@@ -1,27 +1,44 @@
 # Exam Vault
 
-**Exam papers sealed in the teacher's browser that only the class can open, only at exam time, and that no admin or server can read without three admins signing.**
-
-## Demo video
-
-[Watch the 2-minute demo](demo/exam-vault-demo.mp4)
+[![Built with TideCloak](https://tide.org/badges/built-with-tidecloak.svg)](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked)
 
 ## Project overview
 
-**Vision & originality.** Exam Vault protects the exam paper, not the server that stores it. A teacher seals the paper on their own device, and it stays sealed until the class sits the exam, under a rule that a quorum of admins signed at the start of term.
+Exam Vault seals exam papers in the teacher's browser so only the class can open them, only at exam time, and no admin or server can read them.
 
-**Trust constraint insight.** Papers leak through whoever holds the keys: an IT admin, a shared drive, a compromised server. Schools fall back on USB sticks and locked cabinets, because someone can always open the database.
+Built with [TideCloak](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked).
 
-**Value & impact.** Teachers prepare early without fear of leaks. Students get a fair exam. Schools can show, through a hash-chained audit log, that no admin opened a paper. An IT admin with full server access still cannot read Grade 10's final the night before.
+[Watch the demo video](demo/exam-vault-demo.mp4)
 
-**Why TideCloak matters.** The decryption key never exists in one place. It is split across ORK nodes. Each node independently checks the caller's class group, the `_tide_decryptor` role and a quorum-signed `RelationshipAttestation:1` policy (tag = exam slot, read-only, valid only during the exam). The backend stores only ciphertext and gates release by server time. Role, group and policy changes are change requests that need 3 admin approvals.
+### 1. Vision & originality
 
-**Prototype & storytelling.** Watch for:
-1. A teacher seals a paper, attested by the nodes.
-2. A student is refused before the bell, then decrypts at the bell as 3 of 5 nodes light up.
-3. An admin is refused by the backend and by all 5 nodes, even with a forged policy, until three admins approve.
+The paper itself is protected, not the server that stores it. A teacher seals it on their own device, and it stays sealed until the class sits the exam, under a policy three admins signed.
 
-> Runs in **simulated TideCloak mode** (`tide-sim`), which follows TideCloak's real model so the demo is self-contained.
+### 2. Trust constraint insight
+
+Papers leak through whoever holds the keys: an IT admin, a shared drive, a compromised server. Schools fall back on USB sticks and locked cabinets. Remove that trust and papers can be prepared early, digitally.
+
+### 3. Value & impact
+
+- Teachers prepare papers early without fear of leaks.
+- Students get a fair exam.
+- Schools can prove through a hash-chained audit log that no admin opened a paper.
+
+An IT admin with full server access still cannot read Grade 10's final the night before.
+
+### 4. Why TideCloak matters
+
+The decryption key never exists in one place. It is split across ORK nodes. Each node checks the caller's class group, the `_tide_decryptor` role and a quorum-signed `RelationshipAttestation:1` policy (tag = exam slot, read-only, valid only during the exam). The backend stores only ciphertext and gates release by server time. Any role, group or policy change needs 3 admin approvals.
+
+The prototype runs in simulated TideCloak mode (`tide-sim`).
+
+### 5. Prototype & storytelling
+
+Look for three moments:
+
+1. A teacher seals a paper and the nodes attest it.
+2. A student is refused before the start time, then decrypts at the start time as 3 of 5 nodes release key shares.
+3. An admin sees only ciphertext, and all 5 nodes refuse a forged policy.
 
 ## Setup
 
