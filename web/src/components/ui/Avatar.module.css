@@ -1,0 +1,51 @@
+.avatar {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+
+.sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.6875rem;
+}
+
+.md {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: var(--text-xs);
+}
+
+.lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--text-base);
+}
+
+.admin {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent-line);
+}
+
+.teacher {
+  background: var(--color-info-soft);
+  color: var(--color-info);
+  border-color: color-mix(in srgb, var(--color-info) 30%, transparent);
+}
+
+.student {
+  background: var(--color-ok-soft);
+  color: var(--color-ok);
+  border-color: color-mix(in srgb, var(--color-ok) 30%, transparent);
+}
+
+.other {
+  background: var(--color-surface-sunken);
+  color: var(--color-text-muted);
+}

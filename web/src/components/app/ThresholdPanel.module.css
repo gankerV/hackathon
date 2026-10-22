@@ -1,0 +1,27 @@
+.panel {
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(15rem, 20rem);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.steps {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-6);
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .steps {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+  }
+}

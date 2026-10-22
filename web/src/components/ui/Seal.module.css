@@ -1,0 +1,48 @@
+.seal {
+  display: inline-flex;
+  flex: none;
+  filter: drop-shadow(0 2px 2px rgba(60, 20, 10, 0.25));
+  transform: rotate(-8deg);
+}
+
+.wax {
+  fill: var(--color-accent);
+}
+
+.ring {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-text-on-accent) 55%, transparent);
+  stroke-width: 1.2;
+}
+
+.ringInner {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-text-on-accent) 35%, transparent);
+  stroke-width: 0.6;
+  stroke-dasharray: 1.5 2;
+}
+
+.label {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--color-text-on-accent);
+}
+
+.sub {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  fill: color-mix(in srgb, var(--color-text-on-accent) 80%, transparent);
+}
+
+.open .wax {
+  fill: var(--color-ok);
+}
+
+.broken {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+}

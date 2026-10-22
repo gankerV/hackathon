@@ -1,0 +1,43 @@
+.countdown {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.digits {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.part {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.md .value {
+  font-size: var(--text-xl);
+}
+
+.lg .value {
+  font-size: var(--text-4xl);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.unit {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  margin-left: 2px;
+}
+
+.sep {
+  color: var(--color-border-strong);
+  margin: 0 var(--space-1);
+}
+
+.done .eyebrow {
+  color: var(--color-ok);
+}

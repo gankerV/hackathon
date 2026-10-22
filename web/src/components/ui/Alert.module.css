@@ -1,0 +1,82 @@
+.alert {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  border-left-width: 3px;
+}
+
+.icon {
+  display: inline-flex;
+  padding-top: 2px;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-weight: var(--weight-semibold);
+}
+
+.text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.action {
+  align-self: center;
+}
+
+.info {
+  background: var(--color-info-soft);
+  border-color: var(--color-info);
+}
+
+.info .icon {
+  color: var(--color-info);
+}
+
+.ok {
+  background: var(--color-ok-soft);
+  border-color: var(--color-ok);
+}
+
+.ok .icon {
+  color: var(--color-ok);
+}
+
+.warn {
+  background: var(--color-warn-soft);
+  border-color: var(--color-warn);
+}
+
+.warn .icon {
+  color: var(--color-warn);
+}
+
+.danger {
+  background: var(--color-danger-soft);
+  border-color: var(--color-danger);
+}
+
+.danger .icon {
+  color: var(--color-danger);
+}
+
+.refused {
+  background-color: var(--color-surface);
+  background-image: repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--color-accent) 7%, transparent) 9px 10px);
+  border-color: var(--color-accent);
+}
+
+.refused .icon,
+.refused .title {
+  color: var(--color-accent);
+}
