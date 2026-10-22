@@ -52,10 +52,6 @@
   font-size: var(--text-xs);
 }
 
-.row {
-  display: contents;
-}
-
 .rows dt {
   color: var(--color-text-subtle);
 }

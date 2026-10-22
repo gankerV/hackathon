@@ -20,12 +20,6 @@ export function CipherView({ exam }: { exam: StoredExam }) {
         <dd>{bundle.iv}</dd>
         <dt>Digest</dt>
         <dd>{exam.digest}</dd>
-        {bundle.shares.map((share) => (
-          <div key={share.node} className={styles.row}>
-            <dt>Key share · ORK {share.node}</dt>
-            <dd>{share.wrappedShare.data}</dd>
-          </div>
-        ))}
       </dl>
     </div>
   );
