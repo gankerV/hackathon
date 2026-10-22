@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CipherView } from "@/components/app/CipherView";
 import { ExamSheet } from "@/components/app/ExamSheet";
 import { useVaultRun } from "@/components/app/useVaultRun";
 import { Alert, Button, Card, Icon, NodeRing, Select } from "@/components/ui";
 import { ApiError, getExam, getMyPolicy, sendAudit } from "@/lib/api";
+import type { StoredExam } from "@/lib/api";
 import { errorText } from "@/lib/format";
 import { readPaper } from "@/lib/paper";
 import type { ExamPaper } from "@/lib/paper";
@@ -24,6 +26,7 @@ export function AdminAccess({ data }: { data: AdminData }) {
   const [notice, setNotice] = useState<Notice | null>(null);
   const [ringMode, setRingMode] = useState<"open" | "forged">("open");
   const [paper, setPaper] = useState<ExamPaper | null>(null);
+  const [sealed, setSealed] = useState<StoredExam | null>(null);
   const run = useVaultRun();
 
   useEffect(() => {
@@ -35,6 +38,7 @@ export function AdminAccess({ data }: { data: AdminData }) {
   function clear() {
     setNotice(null);
     setPaper(null);
+    setSealed(null);
     run.reset();
   }
 
@@ -44,6 +48,12 @@ export function AdminAccess({ data }: { data: AdminData }) {
     clear();
     try {
       const exam = await getExam(slot.id);
+      if (exam.access === "ciphertext") {
+        setSealed(exam);
+        setNotice({ tone: "refused", text: "You can see the ciphertext, not the exam. No policy names you, so no node will release a key share." });
+        sendAudit("exam.decrypt.denied", slot.id, { by: user?.username, audience: "admin", reason: "no policy, ciphertext only" });
+        return;
+      }
       const policy = await getMyPolicy(slot.id);
       setRingMode("open");
       run.start();
@@ -154,6 +164,7 @@ export function AdminAccess({ data }: { data: AdminData }) {
       {run.active && !paper ? (
         <NodeRing nodes={run.nodes} threshold={3} okLabel="Released" showList={false} centerTitle={ringMode === "forged" ? `${run.refusedCount}/5 refused` : `${run.okCount}/5 nodes released a share`} />
       ) : null}
+      {sealed ? <CipherView exam={sealed} /> : null}
       {paper ? <ExamSheet paper={paper} /> : null}
     </Card>
   );

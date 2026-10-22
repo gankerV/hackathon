@@ -83,6 +83,7 @@ examRoutes.get("/:slotId", (req, res) => {
   };
   let action = "exam.fetch";
   let role = "";
+  let access = "policy";
   const groupPath = getClass(slot.classId)?.groupPath;
   if (hasRole(user, "teacher") && slot.teacher === user.username) {
     role = "teacher";
@@ -99,11 +100,7 @@ examRoutes.get("/:slotId", (req, res) => {
   } else if (hasRole(user, "admin")) {
     action = "exam.fetch.admin";
     role = "admin";
-    const policy = findAdminPolicy(slotId, user);
-    if (!policy) {
-      deny(action, 403, { error: "Admins cannot open exams without a quorum-approved policy naming them" });
-      return;
-    }
+    if (!findAdminPolicy(slotId, user)) access = "ciphertext";
   } else {
     deny(action, 403, { error: "You are not allowed to fetch this exam" });
     return;
@@ -113,8 +110,9 @@ examRoutes.get("/:slotId", (req, res) => {
     deny(action, 404, { error: "No exam uploaded for this slot" });
     return;
   }
-  addAudit(user.username, action, slotId, { result: "allowed", role });
+  addAudit(user.username, action, slotId, { result: access === "ciphertext" ? "ciphertext-only" : "allowed", role });
   res.json({
+    access,
     bundle: JSON.parse(exam.bundle),
     digest: exam.digest,
     attestations: JSON.parse(exam.attestations),

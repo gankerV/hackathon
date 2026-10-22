@@ -73,4 +73,4 @@ The backend and the data model stay as they are. The backend would verify the Ti
 3. Sign in as **teacher.lan**. Write the paper, click **Encrypt & seal**, and watch the nodes attest.
 4. Sign in as **student.minh**. **Open exam** is refused before the start time and works at the start time.
 5. Sign in as **student.khoa** (10B). The 10A exam does not appear for this student.
-6. Sign in as **admin.dung**. Under **Exams → Admin access**, **Try to open** is refused. **Forged policy test** shows all 5 nodes refusing. **Request access** creates change requests that need 3 admins.
+6. Sign in as **admin.dung**. Under **Exams → Admin access**, **Try to open** shows only the ciphertext and the 5 sealed key shares. **Forged policy test** shows all 5 nodes refusing. **Request access** creates change requests that need 3 admins.

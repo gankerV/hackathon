@@ -19,7 +19,7 @@ export type Slot = {
 
 export type AuditEntry = { id: string | number; at: string; actor: string; action: string; target: string; detail: unknown; prevHash: string; hash: string };
 
-export type StoredExam = SealedExam & { uploadedBy: string; uploadedAt: string };
+export type StoredExam = SealedExam & { uploadedBy: string; uploadedAt: string; access: "policy" | "ciphertext" };
 
 export class ApiError extends Error {
   status: number;
@@ -138,6 +138,7 @@ export async function getExam(slotId: string): Promise<StoredExam> {
     attestations: parseMaybe<Attestation[]>(data.attestations) ?? [],
     uploadedBy: String(data.uploadedBy ?? ""),
     uploadedAt: String(data.uploadedAt ?? ""),
+    access: data.access === "ciphertext" ? "ciphertext" : "policy",
   };
 }
 

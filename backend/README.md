@@ -31,7 +31,7 @@ Every `/api` route except `/api/time` needs `Authorization: Bearer <tide-sim JWT
 | POST | /api/policies | admin | `{slotId, audience, signedPolicy}`. Checks the network signature, `assignmentId === slotId` and the audience subject. 201 new, 200 already stored |
 | GET | /api/policies/mine?slotId= | any | the signed policy the caller can use, else 404 |
 | PUT | /api/exams/:slotId | slot teacher | `{bundle, digest, attestations}`. Needs a matching digest and 3+ valid attestations from distinct nodes. 423 once the slot starts |
-| GET | /api/exams/:slotId | gated | teacher: always. Student: 425 before start, 410 after end. Admin: 403 unless an admin policy names them |
+| GET | /api/exams/:slotId | gated | teacher: always. Student: 425 before start, 410 after end. Admin: ciphertext only (`access: "ciphertext"`) unless an admin policy names them |
 | POST | /api/audit | any | client event `{action, target, detail}` |
 | GET | /api/audit | admin | `{ entries (newest first), chainValid }` |
 
