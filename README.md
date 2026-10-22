@@ -68,9 +68,9 @@ The backend and the data model stay as they are. The backend would verify the Ti
 
 ## Demo script
 
-1. Sign in as **admin.an**. Under Classes & exams, create a final exam for 10A starting in about 5 minutes, then click **Prepare policies**.
-2. Switch to **admin.an**, **admin.binh** and **admin.chi** in turn and approve both policies (3/3 each).
-3. Sign in as **teacher.lan**. Write the paper, click **Encrypt & seal**, and watch the node attestations.
-4. Sign in as **student.minh**. The exam is refused before the start time and opens at the start time.
-5. Sign in as **student.khoa** (10B). The nodes refuse: `'/class-10a' group not found`.
-6. Sign in as **admin.dung** and try to open the paper. It is refused until three admins approve an access request.
+1. Sign in as **admin.an**. Under **Exams**, create a final exam for 10A starting in about 5 minutes, then click **Prepare policies**.
+2. In **Approvals**, approve both policies as An, then use the **Sign in as** buttons to approve as Binh and Chi (3/3 each).
+3. Sign in as **teacher.lan**. Write the paper, click **Encrypt & seal**, and watch the nodes attest.
+4. Sign in as **student.minh**. **Open exam** is refused before the start time and works at the start time.
+5. Sign in as **student.khoa** (10B). The 10A exam does not appear for this student.
+6. Sign in as **admin.dung**. Under **Exams → Admin access**, **Try to open** is refused. **Forged policy test** shows all 5 nodes refusing. **Request access** creates change requests that need 3 admins.
