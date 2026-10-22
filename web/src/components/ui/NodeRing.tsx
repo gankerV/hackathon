@@ -23,13 +23,13 @@ function place(index: number, total: number, radius: number) {
   return { x: 160 + radius * Math.cos(angle), y: 160 + radius * Math.sin(angle) };
 }
 
-export function NodeRing({ nodes, threshold, centerTitle, centerNote, okLabel = "Agreed", showList = true, footer }: { nodes: NodeView[]; threshold: number; centerTitle?: ReactNode; centerNote?: ReactNode; okLabel?: string; showList?: boolean; footer?: ReactNode }) {
+export function NodeRing({ nodes, threshold, centerTitle, centerNote, okLabel = "Agreed", showList = true, small = false, footer }: { nodes: NodeView[]; threshold: number; centerTitle?: ReactNode; centerNote?: ReactNode; okLabel?: string; showList?: boolean; small?: boolean; footer?: ReactNode }) {
   const okCount = nodes.filter((node) => node.state === "ok").length;
   const reached = okCount >= threshold;
   const anyActive = nodes.some((node) => node.state !== "idle");
   const failed = anyActive && !reached && nodes.every((node) => node.state !== "pending" && node.state !== "idle");
   return (
-    <div className={styles.wrap}>
+    <div className={[styles.wrap, small || !showList ? styles.single : "", small ? styles.small : ""].join(" ")}>
       <figure className={styles.figure} aria-label={`${okCount} of ${nodes.length} nodes ${okLabel.toLowerCase()}, ${threshold} needed`}>
         <svg viewBox="0 0 320 320" className={styles.svg} role="img" aria-hidden>
           <circle cx="160" cy="160" r="112" className={styles.orbit} />

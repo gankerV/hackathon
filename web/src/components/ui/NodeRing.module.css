@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+.single {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.small .svg {
+  max-width: 180px;
+}
+
 @media (max-width: 720px) {
   .wrap {
     grid-template-columns: 1fr;

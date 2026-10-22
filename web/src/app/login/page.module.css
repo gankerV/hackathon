@@ -1,0 +1,125 @@
+.screen {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.card {
+  width: min(100%, 24rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-8);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  text-align: center;
+}
+
+.card > button {
+  margin-top: var(--space-4);
+  width: 100%;
+}
+
+.title {
+  font-size: var(--text-2xl);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(27, 25, 21, 0.45);
+}
+
+.panel {
+  width: min(100%, 26rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+}
+
+.panelHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-sunken);
+}
+
+.panelTitle {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.cancel {
+  border: 0;
+  background: none;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cancel:hover {
+  color: var(--color-text);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5) var(--space-6);
+}
+
+.stepTitle {
+  font-size: var(--text-lg);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.account:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface-sunken);
+}
+
+.accountText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  font-size: var(--text-sm);
+}
+
+.accountText :global(.mono) {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}

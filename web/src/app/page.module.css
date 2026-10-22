@@ -1,17 +1,11 @@
 .home {
-  max-width: var(--width-content);
+  max-width: 48rem;
   margin: 0 auto;
   padding: var(--space-16) var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-4);
-  max-width: 48rem;
 }
 
 .headline {
@@ -30,81 +24,25 @@
   color: var(--color-text-muted);
 }
 
-.roleGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-}
-
-.roleColumn {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.roleName {
-  font-size: var(--text-lg);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: var(--space-2);
-}
-
-.persona {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+.cta {
+  margin-top: var(--space-4);
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  text-align: left;
-  cursor: pointer;
-  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
-}
-
-.persona:hover:not(:disabled) {
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-2);
-}
-
-.persona:disabled {
-  cursor: progress;
-}
-
-.personaCurrent {
-  border-color: var(--color-accent);
-  background: var(--color-accent-soft);
-}
-
-.personaText {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  line-height: 1.3;
-}
-
-.personaText :global(.mono) {
-  font-size: var(--text-xs);
-  color: var(--color-text-subtle);
-}
-
-.personaAction {
-  font-size: var(--text-sm);
+  height: 3rem;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  text-decoration: none;
   font-weight: var(--weight-medium);
-  color: var(--color-accent);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18), var(--shadow-1);
 }
 
-.skeleton {
-  height: 4rem;
-  border-radius: var(--radius-md);
-  background: var(--color-surface-sunken);
+.cta:hover {
+  background: var(--color-accent-hover);
 }
 
-@media (max-width: 860px) {
-  .roleGrid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 640px) {
   .home {
     padding: var(--space-10) var(--space-4);
   }

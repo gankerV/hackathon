@@ -93,3 +93,20 @@
     padding: 0 var(--space-4);
   }
 }
+
+.signIn {
+  display: inline-flex;
+  align-items: center;
+  height: 2.25rem;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.signIn:hover {
+  background: var(--color-accent-hover);
+}

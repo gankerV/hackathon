@@ -74,16 +74,22 @@ export function Header() {
             <span className="visually-hidden">Server time</span>
             {synced ? formatTime(now) : "--:--:--"}
           </span>
-          <PersonaSwitcher
-            current={user ? { username: user.username, name: user.name, roles: user.roles, groups: user.groups } : null}
-            personas={personas}
-            busy={busy}
-            onPick={pick}
-            onSignOut={() => {
-              signOut();
-              router.push("/");
-            }}
-          />
+          {user ? (
+            <PersonaSwitcher
+              current={{ username: user.username, name: user.name, roles: user.roles, groups: user.groups }}
+              personas={personas}
+              busy={busy}
+              onPick={pick}
+              onSignOut={() => {
+                signOut();
+                router.push("/login");
+              }}
+            />
+          ) : (
+            <Link href="/login" className={styles.signIn}>
+              Sign in
+            </Link>
+          )}
         </div>
       </div>
     </header>
