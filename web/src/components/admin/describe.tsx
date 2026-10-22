@@ -1,45 +1,20 @@
-import type { ReactNode } from "react";
 import type { ClassRoom, Slot } from "@/lib/api";
-import { formatDateTime } from "@/lib/format";
 import type { ChangeRequest, DirectoryUser } from "@/lib/tide";
 
-const labels: Record<string, string> = {
-  "user.addRole": "Grant role",
-  "user.removeRole": "Remove role",
-  "user.addGroup": "Add to group",
-  "user.removeGroup": "Remove from group",
-  "policy.sign": "Sign access policy",
-};
-
-export function requestTitle(request: ChangeRequest) {
-  return labels[request.type] ?? request.type;
-}
-
-function windowText(notBefore: number, expiry: number) {
-  const from = notBefore > 0 ? formatDateTime(notBefore * 1000) : "now";
-  return `${from} → ${formatDateTime(expiry * 1000)}`;
-}
-
-export function requestSummary(request: ChangeRequest, users: DirectoryUser[], slots: Slot[], classes: ClassRoom[]): ReactNode {
+export function describeRequest(request: ChangeRequest, users: DirectoryUser[], slots: Slot[], classes: ClassRoom[]) {
   const payload = request.payload as Record<string, string | number>;
   if (request.type === "policy.sign") {
     const slot = slots.find((item) => item.id === payload.assignmentId);
     const room = classes.find((item) => item.id === slot?.classId);
-    const subject = payload.subjectType === "User" ? users.find((item) => item.tideuserkey === payload.subjectId) : null;
-    const who = subject ? `${subject.name} (${subject.username})` : String(payload.subjectId);
-    return (
-      <>
-        <strong>{String(payload.label ?? "").toUpperCase() || "POLICY"}</strong> · {String(payload.access)} access for <strong>{who}</strong> on <em>{slot ? `${slot.title}${room ? `, ${room.name}` : ""}` : String(payload.assignmentId)}</em>
-        <br />
-        <span className="mono">valid {windowText(Number(payload.notBefore ?? 0), Number(payload.expiry ?? 0))}</span>
-      </>
-    );
+    const subject = payload.subjectType === "User" ? users.find((item) => item.tideuserkey === payload.subjectId)?.name : null;
+    const who = subject ?? (payload.label === "class" && room ? `class ${room.name}` : String(payload.subjectId));
+    const where = slot ? `${slot.title}${room ? ` (${room.name})` : ""}` : String(payload.assignmentId);
+    return `${payload.access === "read" ? "Read" : "Read and write"} access to ${where} for ${who}`;
   }
-  const target = users.find((item) => item.username === payload.username);
-  const value = payload.role ?? payload.group;
-  return (
-    <>
-      <code>{String(value)}</code> {request.type.endsWith("Role") || request.type.endsWith("Group") ? (request.type.includes("remove") ? "from" : "for") : ""} <strong>{target ? `${target.name} (${target.username})` : String(payload.username)}</strong>
-    </>
-  );
+  const name = users.find((item) => item.username === payload.username)?.name ?? String(payload.username);
+  const value = String(payload.role ?? payload.group);
+  if (request.type === "user.addRole") return `Give ${name} the role ${value}`;
+  if (request.type === "user.removeRole") return `Remove role ${value} from ${name}`;
+  if (request.type === "user.addGroup") return `Add ${name} to ${value}`;
+  return `Remove ${name} from ${value}`;
 }

@@ -24,8 +24,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  margin-bottom: var(--space-8);
-  max-width: 44rem;
+  margin-bottom: var(--space-6);
 }
 
 .question {
@@ -45,41 +44,10 @@
   padding-top: 1.6rem;
 }
 
-.storage {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-2) var(--space-6);
-  font-size: var(--text-sm);
-}
 
-.storage dt {
-  color: var(--color-text-subtle);
-}
 
-.storage dd {
-  margin: 0;
-  min-width: 0;
-}
 
-.cipher {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  background: var(--color-surface-sunken);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-3);
-  max-height: 7rem;
-  overflow: hidden;
-  word-break: break-all;
-  mask-image: linear-gradient(to bottom, black 60%, transparent);
-}
 
-.sealedHead {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-}
 
 .countdownBlock {
   display: flex;

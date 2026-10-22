@@ -9,7 +9,7 @@ Live showcase: `/design-system`.
 | Group | Tokens | Notes |
 |---|---|---|
 | Primitives | `--paper-*`, `--ink-*`, `--wax-*`, `--pine-*`, `--ochre-*`, `--slate-*`, `--crimson-*` | Raw palette. Components should not use these directly. |
-| Semantic color | `--color-bg`, `--color-surface`, `--color-surface-sunken`, `--color-border(-strong)`, `--color-text(-muted/-subtle)`, `--color-text-on-accent`, `--color-accent(-hover/-press/-soft/-line)`, `--color-ok(-soft)`, `--color-warn(-soft)`, `--color-danger(-soft)`, `--color-info(-soft)`, `--color-focus`, `--rule-line` | Light by default. A `prefers-color-scheme: dark` block redefines them. |
+| Semantic color | `--color-bg`, `--color-surface`, `--color-surface-sunken`, `--color-border(-strong)`, `--color-text(-muted/-subtle)`, `--color-text-on-accent`, `--color-accent(-hover/-press/-soft/-line)`, `--color-ok(-soft)`, `--color-warn(-soft)`, `--color-danger(-soft)`, `--color-info(-soft)`, `--color-focus`, `--rule-line` | White light theme only. |
 | Type families | `--font-serif` (Newsreader), `--font-sans` (IBM Plex Sans), `--font-mono` (IBM Plex Mono) | Serif for headings and paper text, sans for UI, mono for keys, hashes, times and node IDs. |
 | Type scale | `--text-xs` 12px through `--text-4xl` 56px; `--leading-*`, `--tracking-caps`, `--weight-*` | |
 | Space | `--space-1` 4px through `--space-16` 64px | Based on a 4px unit. |
@@ -30,7 +30,6 @@ Live showcase: `/design-system`.
 | `Alert` | Tones `info`, `ok`, `warn`, `danger`, and `refused` (hatched wax). |
 | `Table` | Generic typed table with an empty state. |
 | `Countdown` | Server-time countdown in tabular mono. Sizes `md`/`lg`. |
-| `Stepper`, `Progress` | Step states `todo`/`active`/`done`/`failed`, and a linear meter. |
 | `NodeRing` | Hero visual: 5 ORK nodes around the key core, with node states `idle`/`pending`/`ok`/`refused`/`offline`, an `n/3` counter, and a list of per-node reasons. |
 | `QuorumMeter` | Hero visual: a large `n/3` count and three signature lines. When the request commits, a wax seal stamps it. |
 | `Seal` | Wax-seal SVG with states `sealed`, `open` and `broken`. |
@@ -39,7 +38,7 @@ Live showcase: `/design-system`.
 | `Icon` | Small stroke icon set (no emoji). |
 | `PersonaSwitcher` | Header menu for switching demo personas, grouped by role. |
 
-App-level compositions live in `src/components/app/`: `Header`, `RoleGate`, `SlotList`, `ThresholdPanel` (NodeRing plus Stepper), `ExamSheet` (the decrypted paper) and `useVaultRun` (paces node events so the threshold is visible).
+App-level compositions live in `src/components/app/`: `Header`, `RoleGate`, `SlotList`, `RingCard` (NodeRing in a card), `ExamSheet` (the decrypted paper) and `useVaultRun` (paces node events so the threshold is visible).
 
 ## Rules
 

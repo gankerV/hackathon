@@ -13,8 +13,6 @@ export { PersonaSwitcher, mainRole } from "./PersonaSwitcher";
 export type { Persona } from "./PersonaSwitcher";
 export { QuorumMeter } from "./QuorumMeter";
 export { Seal } from "./Seal";
-export { Progress, Stepper } from "./Stepper";
-export type { Step, StepState } from "./Stepper";
 export { Table } from "./Table";
 export type { Column } from "./Table";
 export { TabPanel, Tabs } from "./Tabs";

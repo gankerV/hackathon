@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ExamSheet } from "@/components/app/ExamSheet";
-import { Alert, Avatar, Badge, Button, Card, Countdown, Hash, Icon, Input, NodeRing, PersonaSwitcher, Progress, QuorumMeter, Seal, Select, Stepper, Table, TabPanel, Tabs, Textarea } from "@/components/ui";
+import { Alert, Avatar, Badge, Button, Card, Countdown, Hash, Icon, Input, NodeRing, PersonaSwitcher, QuorumMeter, Seal, Select, Table, TabPanel, Tabs, Textarea } from "@/components/ui";
 import type { NodeView, Persona } from "@/components/ui";
 import styles from "./page.module.css";
 
@@ -81,7 +81,7 @@ export default function DesignSystemPage() {
       <header className={styles.head}>
         <span className="eyebrow">Exam Vault design system</span>
         <h1>Sealed paper</h1>
-        <p className="muted">Warm paper surfaces, near-black ink and one wax-red accent. Serif for the voice of the exam hall, sans for controls, mono for anything a machine produced: keys, hashes, times. Red means sealed or refused; refusals are a feature, so they get the accent, not an error look.</p>
+        <p className="muted">One wax-red accent for seals and refusals; mono for keys, hashes and times.</p>
       </header>
 
       <section className={styles.section}>
@@ -215,19 +215,6 @@ export default function DesignSystemPage() {
           <Card title="NodeRing, all states" eyebrow="static">
             <NodeRing nodes={sampleNodes} threshold={3} showList={false} />
           </Card>
-          <Card title="Stepper and progress">
-            <Stepper
-              label="Example"
-              steps={[
-                { id: "a", label: "Encrypt in this browser", state: "done", detail: "AES-GCM-256" },
-                { id: "b", label: "Split the key 3-of-5", state: "done" },
-                { id: "c", label: "Network attests", state: "active" },
-                { id: "d", label: "Store ciphertext", state: "todo" },
-                { id: "e", label: "Refused example", state: "failed", detail: "Policy expired." },
-              ]}
-            />
-            <Progress value={2} max={3} label="Quorum" />
-          </Card>
         </div>
         <Card tone="paper" title="QuorumMeter" eyebrow="change request" actions={<div className="row"><Button size="sm" variant="secondary" onClick={() => setApprovals((value) => Math.max(0, value - 1))}>−</Button><Button size="sm" variant="secondary" onClick={() => setApprovals((value) => Math.min(3, value + 1))}>+</Button></div>}>
           <QuorumMeter approvals={approvalList} threshold={3} status={approvals >= 3 ? "COMMITTED" : "PENDING"} names={{ "admin.an": "An Nguyen", "admin.binh": "Binh Tran", "admin.chi": "Chi Le" }} />
@@ -241,7 +228,7 @@ export default function DesignSystemPage() {
           <Seal label="Signed" sub="3 OF 3" />
           <Seal label="Opened" sub="3 OF 5 NODES" state="open" />
         </div>
-        <ExamSheet paper={{ title: "Mathematics midterm", instructions: "Answer all questions. Show your working.", questions: ["Prove that the square root of 2 is irrational.", "A train leaves at 9:00 at 80 km/h. When does it cover 200 km?"], sealedAt: "" }} slotTitle="Midterm" className="Class 10A" />
+        <ExamSheet paper={{ title: "Mathematics midterm", instructions: "Answer all questions.", questions: ["Prove that the square root of 2 is irrational.", "A train leaves at 9:00 at 80 km/h. When does it cover 200 km?"], sealedAt: "" }} />
       </section>
     </div>
   );

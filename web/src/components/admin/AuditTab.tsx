@@ -55,17 +55,16 @@ export function AuditTab() {
       <div className="row" style={{ justifyContent: "space-between" }}>
         <div className="row">
           {chainValid === null ? null : chainValid ? (
-            <Badge tone="ok" dot>Hash chain intact · {entries.length} entries</Badge>
+            <Badge tone="ok" dot>Chain valid</Badge>
           ) : (
             <Badge tone="danger" dot>Hash chain broken</Badge>
           )}
-          <span className="muted" style={{ fontSize: "var(--text-sm)" }}>Each entry hashes the previous one, so a deleted or edited row breaks the chain.</span>
         </div>
         <Button variant="secondary" size="sm" icon={<Icon name="chain" />} onClick={load} busy={busy}>
           Refresh
         </Button>
       </div>
-      {problem ? <Alert tone="danger" title="Could not load the audit log">{problem}</Alert> : null}
+      {problem ? <Alert tone="danger" title={problem} /> : null}
       <Table<AuditEntry>
         rowKey={(row) => String(row.id ?? row.hash)}
         rows={entries}

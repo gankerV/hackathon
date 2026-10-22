@@ -51,33 +51,22 @@ export function Header() {
     }
   }
 
-  const links = user
-    ? [
-        user.roles.includes("admin") ? { href: "/admin", label: "Admin" } : null,
-        user.roles.includes("teacher") ? { href: "/teacher", label: "Teacher" } : null,
-        user.roles.includes("student") ? { href: "/student", label: "Student" } : null,
-      ].filter(Boolean) as { href: string; label: string }[]
-    : [];
+  const role = user ? mainRole(user.roles) : null;
+  const link = role === "admin" ? { href: "/admin", label: "Admin" } : role === "teacher" ? { href: "/teacher", label: "Teacher" } : role === "student" ? { href: "/student", label: "Student" } : null;
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand}>
           <BrandMark />
-          <span className={styles.brandText}>
-            <span className={styles.brandName}>Exam Vault</span>
-            <span className={styles.brandSub}>secured by TideCloak · simulated</span>
-          </span>
+          <span className={styles.brandName}>Exam Vault</span>
         </Link>
         <nav className={styles.nav} aria-label="Main">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className={[styles.link, pathname.startsWith(link.href) ? styles.current : ""].join(" ")} aria-current={pathname.startsWith(link.href) ? "page" : undefined}>
+          {link ? (
+            <Link href={link.href} className={[styles.link, pathname.startsWith(link.href) ? styles.current : ""].join(" ")} aria-current={pathname.startsWith(link.href) ? "page" : undefined}>
               {link.label}
             </Link>
-          ))}
-          <Link href="/design-system" className={[styles.link, pathname.startsWith("/design-system") ? styles.current : ""].join(" ")}>
-            Design
-          </Link>
+          ) : null}
         </nav>
         <div className={styles.side}>
           <span className={styles.clock} title="Server time from the backend">
